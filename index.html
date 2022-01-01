@@ -5,12 +5,22 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity WebGL Player | Choros</title>
     <style>
-    /* a style sheet needs to be present for cursor hiding and custom cursors to work. */
+    * {margin:0; padding:0;}
     </style>
   </head>
   <body>
     <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" height="960px" width="600px"></canvas>
     <script type='text/javascript'>
+   
+    var canvas = document.getElementById('canvas');
+    var ratio = canvas.width / canvas.height;
+   
+    canvas.height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    canvas.width = canvas.height * ratio;
+ 
+    canvas.style.position = "absolute";
+    canvas.style.left = ((window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth) / 2 - canvas.width / 2) + "px";      
+   
   var Module = {
     TOTAL_MEMORY: 268435456,
     errorhandler: null,            // arguments: err, url, line. This function must return 'true' if the error is handled, otherwise 'false'
